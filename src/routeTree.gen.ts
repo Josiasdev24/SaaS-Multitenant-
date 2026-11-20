@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as PlateformeRouteImport } from './routes/plateforme'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedAbsencesIndexRouteImport } from './routes/_authenticated/absences.index'
 import { Route as AuthenticatedAjustementsArrieresRouteImport } from './routes/_authenticated/ajustements.arrieres'
@@ -53,6 +54,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlateformeRoute = PlateformeRouteImport.update({
+  id: '/plateforme',
+  path: '/plateforme',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
@@ -261,6 +267,7 @@ const AuthenticatedNotesFicheClassIdSubjectIdTermIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
+  '/plateforme': typeof PlateformeRoute
   '/ajustements/arrieres': typeof AuthenticatedAjustementsArrieresRoute
   '/ajustements/bourses': typeof AuthenticatedAjustementsBoursesRoute
   '/ajustements/reductions': typeof AuthenticatedAjustementsReductionsRoute
@@ -297,6 +304,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
+  '/plateforme': typeof PlateformeRoute
   '/': typeof AuthenticatedIndexRoute
   '/ajustements/arrieres': typeof AuthenticatedAjustementsArrieresRoute
   '/ajustements/bourses': typeof AuthenticatedAjustementsBoursesRoute
@@ -336,6 +344,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/plateforme': typeof PlateformeRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/ajustements/arrieres': typeof AuthenticatedAjustementsArrieresRoute
   '/_authenticated/ajustements/bourses': typeof AuthenticatedAjustementsBoursesRoute
@@ -376,6 +385,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/plateforme'
     | '/ajustements/arrieres'
     | '/ajustements/bourses'
     | '/ajustements/reductions'
@@ -412,6 +422,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
+    | '/plateforme'
     | '/'
     | '/ajustements/arrieres'
     | '/ajustements/bourses'
@@ -450,6 +461,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authenticated'
     | '/auth'
+    | '/plateforme'
     | '/_authenticated/'
     | '/_authenticated/ajustements/arrieres'
     | '/_authenticated/ajustements/bourses'
@@ -489,6 +501,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  PlateformeRoute: typeof PlateformeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -505,6 +518,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plateforme': {
+      id: '/plateforme'
+      path: '/plateforme'
+      fullPath: '/plateforme'
+      preLoaderRoute: typeof PlateformeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/': {
@@ -837,6 +857,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  PlateformeRoute: PlateformeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

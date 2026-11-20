@@ -40,6 +40,9 @@ function AuthenticatedLayout() {
       <div className="p-8 text-[14px]">
         <p className="font-medium">Aucun établissement n'est associé à ce compte.</p>
         <p className="mt-2 text-muted-foreground">Contactez l'administration de la plateforme.</p>
+        <a href="/plateforme" className="mt-4 mr-2 inline-block rounded-md border px-3 py-1.5">
+          Espace plateforme
+        </a>
         <ChangePasswordButton className="mt-4 mr-2 rounded-md border px-3 py-1.5" />
         <button
           className="mt-4 rounded-md border px-3 py-1.5"
