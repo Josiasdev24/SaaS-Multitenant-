@@ -10,6 +10,7 @@ import { initials } from "@/lib/format";
 import { GlobalSearch } from "@/components/global-search";
 import { Logo } from "@/components/logo";
 import { BackupReminder } from "@/components/backup-reminder";
+import { ChangePasswordButton } from "@/components/change-password-button";
 import { PrintButton, PrintLetterhead, PrintStyles } from "@/components/print-chrome";
 import { switchSchool, type CurrentUser } from "@/lib/session";
 import { cn } from "@/lib/utils";
@@ -100,6 +101,7 @@ export function AppShell({ user, children }: { user: CurrentUser; children: Reac
             <LogOut className="h-4 w-4" />
           </button>
         </div>
+        <ChangePasswordButton className="mt-1 w-full px-4 pb-3 text-left text-[11px] text-primary-foreground/60 underline" />
       </div>
     </div>
   );
