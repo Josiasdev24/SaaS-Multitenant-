@@ -1,3 +1,4 @@
+import { useCurrentUser } from "@/lib/session";
 import { useState } from "react";
 import { Printer } from "lucide-react";
 
@@ -51,13 +52,22 @@ export function PrintStyles() {
 
 /** En-tête de l'école, visible uniquement à l'impression des pages ordinaires. */
 export function PrintLetterhead({ userName }: { userName: string }) {
+  const { data: user } = useCurrentUser();
+  const school = user?.school;
   return (
     <div className="hidden items-center gap-4 border-b-2 border-black pb-2 print:flex">
-      <Logo className="h-14 w-14 shrink-0" initialsClassName="text-[14px]" />
+      <Logo
+        className="h-14 w-14 shrink-0"
+        initialsClassName="text-[14px]"
+        name={school?.name ?? null}
+        logoPath={school?.logo_path ?? null}
+      />
       <div className="min-w-0 flex-1">
-        <div className="text-[15px] font-bold uppercase tracking-wide">Complexe Scolaire « Omarus Adodo »</div>
-        <div className="text-[11px]">Crèche – Maternelle – Primaire – Collège</div>
-        <div className="text-[11px]">Bè-Kpota, 06 BP 61986 Lomé – Togo · Tél. : (+228) 93 96 13 21 / 98 40 10 27 / 93 21 15 59</div>
+        <div className="text-[15px] font-bold uppercase tracking-wide">{school?.name ?? ""}</div>
+        <div className="text-[11px]">
+          {[school?.address, school?.city].filter(Boolean).join(" – ")}
+          {school?.phone ? ` · Tél. : ${school.phone}` : ""}
+        </div>
       </div>
       <div className="text-right text-[10px]">
         <div>Imprimé le {dateFr(todayISO())}</div>

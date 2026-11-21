@@ -47,13 +47,13 @@ import {
 export const Route = createFileRoute("/_authenticated/ecolage/")({
   head: () => ({
     meta: [
-      { title: "Écolage & paiements — Complexe Scolaire Omarus Adodo" },
+      { title: "Écolage & paiements" },
       {
         name: "description",
         content:
           "Suivi des frais scolaires, encaissements, restes à payer et taux de recouvrement.",
       },
-      { property: "og:title", content: "Écolage & paiements — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Écolage & paiements" },
       {
         property: "og:description",
         content: "Enregistrez les paiements et suivez le recouvrement par élève.",

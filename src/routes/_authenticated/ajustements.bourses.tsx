@@ -4,7 +4,7 @@ import { AdjustmentsPage } from "@/components/adjustments-page";
 
 export const Route = createFileRoute("/_authenticated/ajustements/bourses")({
   head: () => ({
-    meta: [{ title: "Bourses — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Bourses" }],
   }),
   component: () => <AdjustmentsPage kind="bourse" />,
 });

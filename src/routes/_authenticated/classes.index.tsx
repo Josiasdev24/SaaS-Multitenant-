@@ -23,13 +23,13 @@ import {
 export const Route = createFileRoute("/_authenticated/classes/")({
   head: () => ({
     meta: [
-      { title: "Classes — Complexe Scolaire Omarus Adodo" },
+      { title: "Classes" },
       {
         name: "description",
         content:
           "Classes de l'établissement : niveau, effectif, professeur titulaire et moyenne générale.",
       },
-      { property: "og:title", content: "Classes — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Classes" },
       {
         property: "og:description",
         content: "Niveaux, effectifs, titulaires et moyennes de chaque classe.",

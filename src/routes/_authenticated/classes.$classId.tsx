@@ -23,12 +23,12 @@ import {
 export const Route = createFileRoute("/_authenticated/classes/$classId")({
   head: () => ({
     meta: [
-      { title: "Fiche classe — Complexe Scolaire Omarus Adodo" },
+      { title: "Fiche classe" },
       {
         name: "description",
         content: "Détail d'une classe : élèves inscrits, matières enseignées, moyennes et présence.",
       },
-      { property: "og:title", content: "Fiche classe — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Fiche classe" },
       { property: "og:description", content: "Élèves, matières, moyennes et présence de la classe." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -22,12 +22,12 @@ import {
 export const Route = createFileRoute("/_authenticated/matieres/")({
   head: () => ({
     meta: [
-      { title: "Matières — Complexe Scolaire Omarus Adodo" },
+      { title: "Matières" },
       {
         name: "description",
         content: "Matières enseignées, coefficients, enseignants rattachés et moyennes.",
       },
-      { property: "og:title", content: "Matières — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Matières" },
       { property: "og:description", content: "Coefficients, enseignants et moyennes par matière." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

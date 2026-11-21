@@ -24,9 +24,9 @@ import {
 export const Route = createFileRoute("/_authenticated/parametres/")({
   head: () => ({
     meta: [
-      { title: "Paramètres — Complexe Scolaire Omarus Adodo" },
+      { title: "Paramètres" },
       { name: "description", content: "Identité de l'établissement, année scolaire, trimestres, niveaux et seuils d'alerte." },
-      { property: "og:title", content: "Paramètres — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Paramètres" },
       { property: "og:description", content: "Configurez l'établissement, l'année scolaire et les seuils d'alerte." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -66,7 +66,7 @@ function SettingsPage() {
     mutationFn: async (form: FormData) => {
       if (!settings.data) throw new Error("Paramètres introuvables.");
       const { error } = await supabase
-        .from("school_settings")
+        .from("schools")
         .update({
           name: String(form.get("name")).trim(),
           short_name: String(form.get("short_name") || "") || null,

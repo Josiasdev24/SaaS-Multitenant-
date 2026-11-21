@@ -99,7 +99,7 @@ function cleanRow(row: BackupRow): BackupRow {
 export function buildWorkbook(data: BackupData): XLSX.WorkBook {
   const wb = XLSX.utils.book_new();
   const summary: (string | number)[][] = [
-    ["Sauvegarde des données — Complexe Scolaire Omarus Adodo"],
+    ["Sauvegarde des données"],
     ["Date de la sauvegarde", data.exportedAt],
     ["Ce fichier contient des données personnelles (élèves, parents, paiements) : ne le partagez pas."],
     [],
@@ -121,13 +121,13 @@ export function buildWorkbook(data: BackupData): XLSX.WorkBook {
 export const stamp = (iso: string) => iso.slice(0, 16).replace("T", "_").replace(":", "h");
 
 export function downloadExcel(data: BackupData): string {
-  const filename = `sauvegarde-omarus-adodo-${stamp(data.exportedAt)}.xlsx`;
+  const filename = `sauvegarde-${stamp(data.exportedAt)}.xlsx`;
   XLSX.writeFile(buildWorkbook(data), filename);
   return filename;
 }
 
 export function downloadJson(data: BackupData): string {
-  const filename = `sauvegarde-omarus-adodo-${stamp(data.exportedAt)}.json`;
+  const filename = `sauvegarde-${stamp(data.exportedAt)}.json`;
   const blob = new Blob([JSON.stringify(data, null, 1)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");

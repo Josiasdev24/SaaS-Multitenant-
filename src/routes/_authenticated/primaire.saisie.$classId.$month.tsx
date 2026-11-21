@@ -28,7 +28,7 @@ import { TopScroll } from "@/components/top-scroll";
 
 export const Route = createFileRoute("/_authenticated/primaire/saisie/$classId/$month")({
   head: () => ({
-    meta: [{ title: "Saisie des notes du primaire — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Saisie des notes du primaire" }],
   }),
   component: SaisiePage,
 });

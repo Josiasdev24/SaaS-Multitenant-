@@ -1,4 +1,6 @@
 import { usePhotoUrl } from "@/lib/photos";
+import { Logo } from "@/components/logo";
+import { useCurrentUser } from "@/lib/session";
 import {
   GROUP_TITLES,
   appreciation,
@@ -56,6 +58,8 @@ export function BulletinSheet({
   titulaire,
   date,
 }: Props) {
+  const { data: currentUser } = useCurrentUser();
+  const school = currentUser?.school;
   const s = report.student;
   const sexe = s.gender === "F" ? "F" : s.gender === "M" ? "M" : "";
   const statut =
@@ -71,25 +75,20 @@ export function BulletinSheet({
       {/* En-tête */}
       <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-2">
         <div className="space-y-1 text-[10px] font-bold">
-          <div className="text-[11px]">N° : 00016001ADJJJ062616.49</div>
-          <div>MINISTERE DE L'EDUCATION NATIONALE</div>
-          <div>DIRECTION REGIONALE DE L'EDUCATION GRAND-LOME</div>
-          <div className="pt-2 text-[13px]">COMPLEXE SCOLAIRE</div>
-          <div className="text-[13px]">"OMARUS ADODO"</div>
-          <div className="pl-3">BE ADJIDOME</div>
-          <div className="pl-1">90 20 77 16 / 97 66 50 16</div>
-          <div className="pl-1">Lomé-Togo</div>
+          {(school?.header_lines ?? []).map((line, i) => (
+            <div key={i}>{line}</div>
+          ))}
+          <div className="pt-2 text-[13px] uppercase">{school?.name ?? ""}</div>
+          {school?.address ? <div className="pl-3">{school.address}</div> : null}
+          {school?.phone ? <div className="pl-1">{school.phone}</div> : null}
+          {school?.city ? <div className="pl-1">{school.city}</div> : null}
         </div>
-        <img
-          src="/logo-omarus.jpg"
-          alt="Complexe Scolaire Omarus Adodo"
-          width={96}
-          height={96}
-          className="h-24 w-24 object-contain"
-          onError={(e) => {
-            const img = e.currentTarget;
-            if (!img.src.endsWith("/logo.png")) img.src = "/logo.png";
-          }}
+        <Logo
+          className="h-24 w-24 rounded-none"
+          imageClassName="object-contain"
+          initialsClassName="text-base"
+          name={school?.name ?? null}
+          logoPath={school?.logo_path ?? null}
         />
         <div className="space-y-1 text-right text-[10px] font-bold">
           <div>REPUBLIQUE TOGOLAISE</div>

@@ -28,7 +28,7 @@ import { LoadingBlock, NoAccess, PageHeader, Panel, Td, Th } from "@/components/
 
 export const Route = createFileRoute("/_authenticated/notes/fiche/$classId/$subjectId/$termId")({
   head: () => ({
-    meta: [{ title: "Fiche de notes — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Fiche de notes" }],
   }),
   component: FichePage,
 });

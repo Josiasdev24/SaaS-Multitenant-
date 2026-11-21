@@ -13,7 +13,7 @@ import { PageHeader, Panel, LoadingBlock, TableWrap, Th, Td, EmptyRow } from "@/
 
 export const Route = createFileRoute("/_authenticated/eleves/import")({
   head: () => ({
-    meta: [{ title: "Importer des élèves — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Importer des élèves" }],
   }),
   component: ImportPage,
 });

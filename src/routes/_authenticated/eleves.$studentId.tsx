@@ -38,13 +38,13 @@ import {
 export const Route = createFileRoute("/_authenticated/eleves/$studentId")({
   head: () => ({
     meta: [
-      { title: "Fiche élève — Complexe Scolaire Omarus Adodo" },
+      { title: "Fiche élève" },
       {
         name: "description",
         content:
           "Fiche individuelle : état civil, moyennes par matière, absences, écolage et famille.",
       },
-      { property: "og:title", content: "Fiche élève — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Fiche élève" },
       {
         property: "og:description",
         content: "État civil, résultats, absences et écolage de l'élève.",

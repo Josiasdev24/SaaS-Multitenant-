@@ -27,13 +27,13 @@ import {
 export const Route = createFileRoute("/_authenticated/")({
   head: () => ({
     meta: [
-      { title: "Tableau de bord — Complexe Scolaire Omarus Adodo" },
+      { title: "Tableau de bord" },
       {
         name: "description",
         content:
           "Vue d'ensemble de l'établissement : effectifs, présence, moyennes de classe et recouvrement de l'écolage.",
       },
-      { property: "og:title", content: "Tableau de bord — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Tableau de bord" },
       {
         property: "og:description",
         content: "Effectifs, présence, moyennes et recouvrement de l'écolage en un coup d'œil.",

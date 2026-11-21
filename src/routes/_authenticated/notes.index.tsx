@@ -12,7 +12,7 @@ import { LoadingBlock, NoAccess, PageHeader, Panel, TableWrap, Td, Th, EmptyRow 
 export const Route = createFileRoute("/_authenticated/notes/")({
   head: () => ({
     meta: [
-      { title: "Notes — Complexe Scolaire Omarus Adodo" },
+      { title: "Notes" },
       {
         name: "description",
         content: "Fiches de notes du collège : interrogations, devoirs, composition et moyenne de classe.",

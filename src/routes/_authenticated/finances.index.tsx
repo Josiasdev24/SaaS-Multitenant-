@@ -4,7 +4,7 @@ import { FinanceDashboard } from "@/components/finance-dashboard";
 
 export const Route = createFileRoute("/_authenticated/finances/")({
   head: () => ({
-    meta: [{ title: "Tableau financier — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Tableau financier" }],
   }),
   component: () => <FinanceDashboard />,
 });

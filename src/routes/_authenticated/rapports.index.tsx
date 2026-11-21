@@ -36,9 +36,9 @@ const printCss = `
 export const Route = createFileRoute("/_authenticated/rapports/")({
   head: () => ({
     meta: [
-      { title: "Rapports & bulletins — Complexe Scolaire Omarus Adodo" },
+      { title: "Rapports & bulletins" },
       { name: "description", content: "Bulletins trimestriels par classe, classements, moyennes par matière et synthèses financières." },
-      { property: "og:title", content: "Rapports & bulletins — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Rapports & bulletins" },
       { property: "og:description", content: "Bulletins par classe et trimestre, classements et synthèses." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

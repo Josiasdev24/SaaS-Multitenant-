@@ -10,7 +10,7 @@ import { LoadingBlock, NoAccess, PageHeader, Panel, TableWrap, Th, Td } from "@/
 
 export const Route = createFileRoute("/_authenticated/primaire/matieres")({
   head: () => ({
-    meta: [{ title: "Matières du primaire — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Matières du primaire" }],
   }),
   component: MatieresPage,
 });

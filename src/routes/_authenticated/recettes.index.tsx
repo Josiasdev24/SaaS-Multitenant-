@@ -4,7 +4,7 @@ import { LedgerPage } from "@/components/ledger-page";
 
 export const Route = createFileRoute("/_authenticated/recettes/")({
   head: () => ({
-    meta: [{ title: "Recettes — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Recettes" }],
   }),
   component: () => <LedgerPage kind="incomes" />,
 });

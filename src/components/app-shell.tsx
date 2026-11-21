@@ -37,8 +37,8 @@ export function AppShell({ user, children }: { user: CurrentUser; children: Reac
         <Logo
           className="h-11 w-11 border border-primary-foreground/30"
           initialsClassName="text-[11px]"
-          name={user.school?.name}
-          logoPath={user.school?.logo_path}
+          name={user.school?.name ?? null}
+          logoPath={user.school?.logo_path ?? null}
         />
         <div className="min-w-0">
           <div className="font-serif text-[17px] leading-tight text-primary-foreground">

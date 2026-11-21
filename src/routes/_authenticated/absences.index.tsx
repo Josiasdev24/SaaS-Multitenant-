@@ -26,9 +26,9 @@ import {
 export const Route = createFileRoute("/_authenticated/absences/")({
   head: () => ({
     meta: [
-      { title: "Absences & retards — Complexe Scolaire Omarus Adodo" },
+      { title: "Absences & retards" },
       { name: "description", content: "Appel quotidien par classe, historique des absences et taux de présence." },
-      { property: "og:title", content: "Absences & retards — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Absences & retards" },
       { property: "og:description", content: "Faites l'appel et suivez l'assiduité de chaque classe." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

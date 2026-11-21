@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { getActiveSchoolId } from "@/lib/active-school";
 
 /* ------------------------------------------------------------------ types */
 
@@ -372,9 +373,9 @@ export const q = {
     queryKey: ["settings"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("school_settings")
+        .from("schools")
         .select("*")
-        .limit(1)
+        .eq("id", getActiveSchoolId() ?? "")
         .maybeSingle();
       if (error) throw new Error(error.message);
       return (data ?? null) as Settings | null;

@@ -28,7 +28,7 @@ import { LoadingBlock, NoAccess, PageHeader, Panel } from "@/components/kit";
 
 export const Route = createFileRoute("/_authenticated/primaire/eleve/$studentId")({
   head: () => ({
-    meta: [{ title: "Fiche de notes du primaire — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Fiche de notes du primaire" }],
   }),
   component: StudentSheetPage,
 });

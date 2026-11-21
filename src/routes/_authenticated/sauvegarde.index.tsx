@@ -18,7 +18,7 @@ import { useCurrentUser } from "@/lib/session";
 import { EmptyRow, LoadingBlock, NoAccess, PageHeader, Panel, TableWrap, Td, Th } from "@/components/kit";
 
 export const Route = createFileRoute("/_authenticated/sauvegarde/")({
-  head: () => ({ meta: [{ title: "Sauvegarde — Complexe Scolaire Omarus Adodo" }] }),
+  head: () => ({ meta: [{ title: "Sauvegarde" }] }),
   component: BackupPage,
 });
 

@@ -33,7 +33,7 @@ import {
 
 export const Route = createFileRoute("/_authenticated/primaire/")({
   head: () => ({
-    meta: [{ title: "Bulletins du primaire — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Bulletins du primaire" }],
   }),
   component: PrimaireHub,
 });

@@ -23,9 +23,9 @@ import {
 export const Route = createFileRoute("/_authenticated/alertes/")({
   head: () => ({
     meta: [
-      { title: "Alertes — Complexe Scolaire Omarus Adodo" },
+      { title: "Alertes" },
       { name: "description", content: "Alertes automatiques : impayés, absentéisme et difficultés scolaires." },
-      { property: "og:title", content: "Alertes — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Alertes" },
       { property: "og:description", content: "Impayés, absentéisme et élèves en difficulté à suivre." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -9,7 +9,7 @@ import { LoadingBlock, NoAccess, PageHeader } from "@/components/kit";
 
 export const Route = createFileRoute("/_authenticated/ecolage/recu/$paymentId")({
   head: () => ({
-    meta: [{ title: "Reçu de paiement — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Reçu de paiement" }],
   }),
   component: ReceiptPage,
 });
@@ -92,6 +92,8 @@ function ReceiptContent({
   paidAt,
   receiptNumber,
 }: SheetProps) {
+  const { data: currentUser } = useCurrentUser();
+  const school = currentUser?.school;
   const date = dateParts(paidAt);
 
   return (
@@ -99,20 +101,10 @@ function ReceiptContent({
         {/* En-tête */}
         <div className="flex items-start justify-between gap-4">
           <div className="leading-tight">
-            <div className="whitespace-nowrap text-[17px] font-semibold tracking-tight">
-              Complexe Scolaire
-            </div>
-            <div className="whitespace-nowrap text-[24px] font-extrabold leading-none">
-              “Omarus ADODO”
-            </div>
-            <div className="mt-1 whitespace-nowrap text-[13px] font-semibold">
-              Crèche, Maternelle, Primaire, Collège
-            </div>
-            <div className="whitespace-nowrap text-[12px] font-bold">Bè-Kpota 06 BP 61986</div>
-            <div className="whitespace-nowrap text-[11px] font-semibold">
-              Tél. : (+228) 93 96 13 21 / 98 40 10 27
-            </div>
-            <div className="whitespace-nowrap text-[12px] font-bold">Lomé - TOGO</div>
+            <div className="whitespace-nowrap text-[22px] font-extrabold leading-none">{school?.name ?? ""}</div>
+            {school?.address ? <div className="mt-1 whitespace-nowrap text-[12px] font-bold">{school.address}</div> : null}
+            {school?.phone ? <div className="whitespace-nowrap text-[11px] font-semibold">Tél. : {school.phone}</div> : null}
+            {school?.city ? <div className="whitespace-nowrap text-[12px] font-bold">{school.city}</div> : null}
           </div>
 
           <div className="flex items-center gap-2 pt-1">

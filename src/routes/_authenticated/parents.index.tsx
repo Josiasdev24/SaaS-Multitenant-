@@ -22,12 +22,12 @@ import {
 export const Route = createFileRoute("/_authenticated/parents/")({
   head: () => ({
     meta: [
-      { title: "Parents & tuteurs — Complexe Scolaire Omarus Adodo" },
+      { title: "Parents & tuteurs" },
       {
         name: "description",
         content: "Répertoire des parents et tuteurs avec coordonnées et enfants rattachés.",
       },
-      { property: "og:title", content: "Parents & tuteurs — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Parents & tuteurs" },
       { property: "og:description", content: "Coordonnées des familles et enfants rattachés." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

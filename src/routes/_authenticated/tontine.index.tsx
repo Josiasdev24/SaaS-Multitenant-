@@ -4,7 +4,7 @@ import { TontinePage } from "@/components/tontine-page";
 
 export const Route = createFileRoute("/_authenticated/tontine/")({
   head: () => ({
-    meta: [{ title: "Tontine — Complexe Scolaire Omarus Adodo" }],
+    meta: [{ title: "Tontine" }],
   }),
   component: () => <TontinePage />,
 });

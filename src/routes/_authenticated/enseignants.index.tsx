@@ -22,12 +22,12 @@ import {
 export const Route = createFileRoute("/_authenticated/enseignants/")({
   head: () => ({
     meta: [
-      { title: "Enseignants — Complexe Scolaire Omarus Adodo" },
+      { title: "Enseignants" },
       {
         name: "description",
         content: "Corps enseignant : coordonnées, matières enseignées et classes attribuées.",
       },
-      { property: "og:title", content: "Enseignants — Complexe Scolaire Omarus Adodo" },
+      { property: "og:title", content: "Enseignants" },
       {
         property: "og:description",
         content: "Coordonnées, matières et classes de chaque enseignant.",
