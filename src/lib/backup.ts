@@ -9,7 +9,6 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const BACKUP_TABLES = [
   "academic_years",
-  "app_settings",
   "attendance",
   "bulletin_notes",
   "bulletin_remarks",
@@ -24,12 +23,12 @@ export const BACKUP_TABLES = [
   "grades",
   "incomes",
   "parents",
+  "payment_deletions",
   "primary_scores",
   "primary_subjects",
-  "profiles",
   "report_cards",
+  "school_cycles",
   "school_fees",
-  "school_settings",
   "student_fees",
   "student_parents",
   "students",
@@ -38,7 +37,6 @@ export const BACKUP_TABLES = [
   "teachers",
   "terms",
   "tontine_deposits",
-  "user_roles",
 ] as const;
 
 export type BackupRow = Record<string, unknown>;
