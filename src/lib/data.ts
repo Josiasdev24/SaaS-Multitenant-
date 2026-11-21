@@ -164,7 +164,10 @@ export type Settings = {
   id: string;
   name: string;
   short_name: string | null;
-  logo_url: string | null;
+  logo_path: string | null;
+  primary_color: string | null;
+  accent_color: string | null;
+  header_lines: string[];
   address: string | null;
   phone: string | null;
   email: string | null;

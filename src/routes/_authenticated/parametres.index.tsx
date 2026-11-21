@@ -7,6 +7,7 @@ import { q } from "@/lib/data";
 import { dateFr } from "@/lib/format";
 import { useCurrentUser } from "@/lib/session";
 import { ROLE_LABELS } from "@/lib/roles";
+import { Logo } from "@/components/logo";
 import { getSecretaryCanCollect, setSecretaryCanCollect } from "@/lib/app-settings";
 import {
   PageHeader,
@@ -75,6 +76,12 @@ function SettingsPage() {
           email: String(form.get("email") || "") || null,
           currency: String(form.get("currency") || "FCFA"),
           absence_threshold: Number(form.get("absence_threshold")) || 5,
+          primary_color: String(form.get("primary_color") || "") || null,
+          accent_color: String(form.get("accent_color") || "") || null,
+          header_lines: String(form.get("header_lines") || "")
+            .split(/\r?\n/)
+            .map((l) => l.trim())
+            .filter(Boolean),
         } as never)
         .eq("id", settings.data.id);
       if (error) throw new Error(error.message);
@@ -82,6 +89,7 @@ function SettingsPage() {
     onSuccess: () => {
       toast.success("Paramètres enregistrés");
       queryClient.invalidateQueries({ queryKey: ["settings"] });
+      queryClient.invalidateQueries({ queryKey: ["current-user"] });
     },
     onError: (e: Error) => toast.error("Enregistrement impossible", { description: e.message }),
   });
@@ -145,6 +153,41 @@ function SettingsPage() {
               className={inputClass}
             />
           </div>
+          <div>
+            <label htmlFor="primary_color" className="label-caps">Couleur principale</label>
+            <input
+              id="primary_color"
+              name="primary_color"
+              type="color"
+              defaultValue={s?.primary_color ?? "#2150a0"}
+              disabled={!perms.manageStructure}
+              className="mt-1.5 h-10 w-full cursor-pointer rounded-md border border-border bg-card p-1"
+            />
+          </div>
+          <div>
+            <label htmlFor="accent_color" className="label-caps">Couleur d'accent</label>
+            <input
+              id="accent_color"
+              name="accent_color"
+              type="color"
+              defaultValue={s?.accent_color ?? "#d6402b"}
+              disabled={!perms.manageStructure}
+              className="mt-1.5 h-10 w-full cursor-pointer rounded-md border border-border bg-card p-1"
+            />
+          </div>
+          <div className="md:col-span-3">
+            <label htmlFor="header_lines" className="label-caps">
+              Mentions en tête des bulletins (une par ligne : ministère, direction régionale, numéro d'agrément…)
+            </label>
+            <textarea
+              id="header_lines"
+              name="header_lines"
+              rows={4}
+              defaultValue={(s?.header_lines ?? []).join("\n")}
+              disabled={!perms.manageStructure}
+              className={inputClass + " h-auto py-2"}
+            />
+          </div>
           {perms.manageStructure ? (
             <div className="md:col-span-3">
               <button
@@ -162,6 +205,8 @@ function SettingsPage() {
           )}
         </form>
       </Panel>
+
+      {perms.manageStructure && user?.school ? <LogoPanel schoolId={user.school.id} logoPath={user.school.logo_path} name={user.school.name} /> : null}
 
       {user?.role === "admin" ? (
         <Panel>
@@ -259,3 +304,46 @@ function SettingsPage() {
 
 const inputClass =
   "mt-1.5 h-9 w-full rounded-md border border-border bg-card px-3 text-[13px] outline-none focus:border-primary/50";
+
+
+/** Envoi du logo de l'école (stocké dans le dossier de l'école du bucket school-logos). */
+function LogoPanel({ schoolId, logoPath, name }: { schoolId: string; logoPath: string | null; name: string }) {
+  const queryClient = useQueryClient();
+  const upload = useMutation({
+    mutationFn: async (file: File) => {
+      if (file.size > 2 * 1024 * 1024) throw new Error("Image trop lourde (2 Mo maximum).");
+      const ext = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : file.type === "image/jpeg" ? "jpg" : null;
+      if (!ext) throw new Error("Format accepté : JPG, PNG ou WebP.");
+      const path = `${schoolId}/logo-${Date.now()}.${ext}`;
+      const { error: upError } = await supabase.storage.from("school-logos").upload(path, file, { contentType: file.type });
+      if (upError) throw new Error(upError.message);
+      const { error } = await supabase.from("schools").update({ logo_path: path } as never).eq("id", schoolId);
+      if (error) throw new Error(error.message);
+    },
+    onSuccess: () => {
+      toast.success("Logo enregistré");
+      queryClient.invalidateQueries({ queryKey: ["current-user"] });
+      queryClient.invalidateQueries({ queryKey: ["school-logo"] });
+    },
+    onError: (e: Error) => toast.error("Envoi impossible", { description: e.message }),
+  });
+
+  return (
+    <Panel>
+      <h2 className="text-[15px] font-semibold">Logo</h2>
+      <div className="mt-3 flex items-center gap-4">
+        <Logo className="h-16 w-16 border border-border" name={name} logoPath={logoPath} initialsClassName="text-sm" />
+        <input
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          disabled={upload.isPending}
+          onChange={(e) => {
+            const f = e.target.files?.[0];
+            if (f) upload.mutate(f);
+          }}
+          className="text-[13px]"
+        />
+      </div>
+    </Panel>
+  );
+}

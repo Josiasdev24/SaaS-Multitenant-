@@ -10,6 +10,7 @@ import { initials } from "@/lib/format";
 import { GlobalSearch } from "@/components/global-search";
 import { Logo } from "@/components/logo";
 import { BackupReminder } from "@/components/backup-reminder";
+import { SchoolTheme } from "@/components/school-theme";
 import { ChangePasswordButton } from "@/components/change-password-button";
 import { PrintButton, PrintLetterhead, PrintStyles } from "@/components/print-chrome";
 import { switchSchool, type CurrentUser } from "@/lib/session";
@@ -109,6 +110,7 @@ export function AppShell({ user, children }: { user: CurrentUser; children: Reac
   return (
     <div className="min-h-screen bg-background">
       <PrintStyles />
+      <SchoolTheme school={user.school} />
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 border-r border-primary bg-primary lg:block print:hidden">
         {sidebar}
       </aside>
