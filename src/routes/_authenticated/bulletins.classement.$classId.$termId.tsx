@@ -6,6 +6,7 @@ import { useBulletinData } from "@/lib/bulletin-data";
 import { useCurrentUser } from "@/lib/session";
 import { BULLETIN_PRINT_CSS } from "@/components/bulletin-sheet";
 import { LoadingBlock, NoAccess, PageHeader } from "@/components/kit";
+import { Logo } from "@/components/logo";
 
 export const Route = createFileRoute("/_authenticated/bulletins/classement/$classId/$termId")({
   head: () => ({
@@ -69,9 +70,14 @@ function ClassementPage() {
           style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
         >
           <div className="flex items-center justify-between gap-4">
-            <img src="/logo.png" alt="" width={64} height={64} className="h-16 w-16" />
+            <Logo
+              className="h-16 w-16 rounded-none"
+              imageClassName="object-contain"
+              name={user?.school?.name ?? null}
+              logoPath={user?.school?.logo_path ?? null}
+            />
             <div className="text-center">
-              <div className="text-[14px] font-bold">COMPLEXE SCOLAIRE "OMARUS ADODO"</div>
+              <div className="text-[14px] font-bold">{(user?.school?.name ?? "").toUpperCase()}</div>
               <div className="mt-1 text-[16px] font-bold underline">FICHE DE CLASSEMENT</div>
               <div className="mt-1 font-semibold">
                 Classe : {data.klass?.name} · {term?.name} · Année scolaire {data.schoolYear}

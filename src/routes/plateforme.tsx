@@ -208,7 +208,7 @@ function CreateSchool({ onCreated }: { onCreated: (id: string) => void }) {
         <input className={input} placeholder="Nom de l'école" required value={name} onChange={(e) => setName(e.target.value)} />
         <input
           className={input}
-          placeholder="Identifiant court (ex. csoa)"
+          placeholder="Identifiant court (ex. mon-ecole)"
           required
           pattern="[a-z0-9][a-z0-9\-]{1,62}"
           value={effectiveSlug}
